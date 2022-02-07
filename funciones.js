@@ -11,7 +11,7 @@ Consideraciones:
 const { Pool } = require('pg');
 
 const config = {
-  user: 'joseorellanaaravena',
+  user: 'postgres',
   host: 'localhost',
   database: 'bancosolar',
   password: '240512',
@@ -183,7 +183,8 @@ const getTransferencias = async () => {
       SELECT te.id, te.emisor as emisor, tr.receptor as receptor, te.monto as monto, te.fecha as fecha
       FROM tmp_receptor as tr
       JOIN tmp_emisor as te
-      ON te.id = tr.id;`,
+      ON te.id = tr.id
+      ORDER BY te.fecha DESC;`,
       rowMode: 'array',
     }
 
